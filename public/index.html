@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plant Watering Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard">
+    <h1>Automatic Plant Watering System</h1>
+
+    <!-- Troubleshoot Mode Toggle -->
+    <label class="switch">
+      <input type="checkbox" id="troubleshootToggle">
+      <span class="slider"></span>
+    </label>
+    <span id="troubleshootLabel">Troubleshoot Mode: OFF</span>
+
+    <!-- Warnings Section -->
+    <div id="warnings"></div>
+
+    <!-- Sensor Sections -->
+    <div class="sensor-section">
+      <label>Soil Moisture: <span id="moistureValue">0%</span></label>
+      <div class="progress-container">
+        <div id="moistureBar" class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div class="sensor-section">
+      <label>Water Level: <span id="waterValue">0%</span></label>
+      <div class="progress-container">
+        <div id="waterBar" class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div class="sensor-section">
+      <label>Pump Status: <span id="pumpStatus">OFF</span></label>
+    </div>
+
+    <div class="sensor-section">
+      <label>System Uptime: <span id="uptimeValue">0s</span></label>
+    </div>
+
+    <!-- Raw Sensor Data (Visible in Troubleshoot Mode) -->
+    <div id="rawData" class="hidden">
+      <h3>Raw Sensor Data</h3>
+      <p>Soil Moisture: <span id="rawMoisture">0</span></p>
+      <p>Water Level: <span id="rawWater">0</span></p>
+    </div>
+
+<!-- Manual Pump Control and Threshold Input (Visible in Troubleshoot Mode) -->
+<div id="manualControl" class="hidden">
+  <button id="pumpOnButton">Turn Pump ON</button>
+  <button id="pumpOffButton">Turn Pump OFF</button>
+  <br><br>
+  <label>Current Soil Moisture Threshold: <span id="currentThreshold">30%</span></label>
+  <br><br>
+  <label>Set New Soil Moisture Threshold (%): 
+    <input type="number" id="soilThreshold" value="30" min="0" max="100">
+  </label>
+  <button id="saveThresholds">Save Threshold</button>
+</div>
+
+    <!-- Historical Data Visualization -->
+    <div class="sensor-section">
+      <h3>Historical Data</h3>
+      <canvas id="historyChart" width="400" height="200"></canvas>
+    </div>
+
+    <!-- System Status -->
+    <div id="systemStatus"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js "></script>
+  <script src="script.js"></script>
+</body>
+</html>
